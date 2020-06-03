@@ -58,21 +58,21 @@ class Toggle extends React.Component {
   }
 }
 
-function UserGreeting(props) {
-  return <h1>Welcome back!</h1>
+function UserGreeting() {
+  return <h1>Welcome back!</h1>;
 }
 
-function GuestGreeting(props) {
-  return <h1>Please sign in</h1>
+function GuestGreeting() {
+  return <h1>Please sign in</h1>;
 }
 
 function Gretting(props) {
   const isLoggedIn = props.isLoggedIn;
 
   if(isLoggedIn) {
-    return <UserGreeting />
+    return <UserGreeting />;
   }
-  return <GuestGreeting />
+  return <GuestGreeting />;
 }
 
 function LoginButton(props) {
@@ -96,7 +96,7 @@ class LoginControl extends React.Component {
     super(props);
     this.handleLoginClick = this.handleLoginClick.bind(this);
     this.handleLogoutClick = this.handleLogoutClick.bind(this);
-    this.state = { isLoggedIn: false };
+    this.state = {isLoggedIn: false};
   }
 
   handleLoginClick() {
@@ -126,8 +126,28 @@ class LoginControl extends React.Component {
   }
 }
 
+function ListItem(props) {
+  const value = props.value;
+
+  return (
+    <li>{value.toString()}</li>
+  )
+}
+
+function NumberList(props) {
+  const numbers = props.numbers;
+
+  return(
+    <ul>
+      {numbers.map((number) =>
+        <ListItem value={number} key={number.toString()}/>
+      )}
+    </ul>
+  )
+}
+
 ReactDOM.render(
-  <LoginControl />,
+  <NumberList numbers={[1,2,3,4,5]} />,
   document.getElementById('root')
 )
 serviceWorker.unregister();
